@@ -1,0 +1,26 @@
+.badge-wrapper{
+  display: flex;
+  width: 65px;
+  height: 28px;
+  background-color: #DAF5EE;
+
+  border: 1px solid #DAF5EE;
+  border-radius: 21px;
+
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 130%;
+
+  text-transform: uppercase;
+  justify-content: center;
+  align-items: center;
+
+  color: #1FAD87;
+}
+
+.west {
+  background-color: #FFEAE3;
+  border-color: #FFEAE3;
+  color: #E64A18;
+}

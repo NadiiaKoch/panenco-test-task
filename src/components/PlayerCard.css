@@ -1,0 +1,15 @@
+.icon {
+  width: 80px;
+  height: 80px;
+
+  background-color: #EDE6FB;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 125%;
+
+  align-items: center;
+  text-align: center;
+  color: #1D0053;
+  border-radius: 50%;
+}

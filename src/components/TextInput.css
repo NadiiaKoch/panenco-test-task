@@ -1,0 +1,42 @@
+.textInput{
+  position: relative;
+}
+
+.label{
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 130%;
+  color: #757575;
+
+  position: absolute;
+  top: -35%;
+}
+
+.field {
+  position: relative;
+  height: 48px;
+  display: flex;
+  border: 1px solid #BDBDBD;
+  border-radius: 4px; 
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  min-width: 194px;
+
+  color: #14141E;
+}
+
+.error {
+  border: 2px solid #F44336;
+}
+
+.error-message{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 130%;  
+  color: #F44336;
+  margin-top: 1px;
+  position: absolute;
+}

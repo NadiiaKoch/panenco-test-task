@@ -1,0 +1,12 @@
+.select {
+  height: 48px;
+  border: 1px solid #BDBDBD;
+  border-radius: 4px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+
+  color: #14141E;
+  min-width: 194px;
+}
