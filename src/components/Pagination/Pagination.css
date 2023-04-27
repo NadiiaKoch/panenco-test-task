@@ -57,19 +57,19 @@
 
 .button-left::after {
   content: '';
-  background-image: url("../image/left.png");
+  background-image: url("../../image/left.svg");
   background-repeat: no-repeat;
   display: block;
   width: 24px;
   height: 24px;
   position: absolute;
-  top: 20%;
-  right: 90%;
+  top: 25%;
+  right: 85%;
 }
 
 .button-right::after {
   content: '';
-  background-image: url("../image/right.png");
+  background-image: url("../../image/right.svg");
   background-repeat: no-repeat;
   display: block;
   width: 24px;

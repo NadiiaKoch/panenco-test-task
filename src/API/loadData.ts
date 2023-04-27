@@ -22,13 +22,3 @@ export function getPlayers(
     .get(`/players?page=${page}&per_page=${perPage}`)
     .then((res) => res.data);
 }
-
-export function getData(
-  data: string,
-  page: number,
-  perPage: number,
-): Promise<Players | Teams> {
-  return axios
-    .get(`/${data}?page=${page}&per_page=${perPage}`)
-    .then((res) => res.data);
-}

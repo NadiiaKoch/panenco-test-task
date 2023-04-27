@@ -3,7 +3,7 @@
 One-page React app was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 - [DEMOLINK](https://nadiiakoch.github.io/panenco-test-task/)
-- [Figma prototype](https://www.figma.com/file/nJCQuTxhITJgudA3tjFE20/Panenco-frontend-test-task-1.0?node-id=1-2&t=pdBBjr2E1NfCSVq5-0)
+- [Figma](https://www.figma.com/file/nJCQuTxhITJgudA3tjFE20/Panenco-frontend-test-task-1.0?node-id=1-2&t=pdBBjr2E1NfCSVq5-0)
 - [API](https://app.balldontlie.io/)
 
 ---
@@ -26,7 +26,7 @@ The following technologies were used in this project:
 
 ## Screenshot
 
-## ![]()
+## ![](Demo.png)
 
 ## Running the project
 

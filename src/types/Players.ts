@@ -1,4 +1,15 @@
-import { Player } from "./Player";
+import { Team } from './Teams';
+
+export interface Player {
+  id: number;
+  first_name: string;
+  last_name: string;
+  position: string;
+  height_feet: number;
+  height_inches: number;
+  weight_pounds: number;
+  team: Team;
+}
 
 export interface Players {
   data: Player[];

@@ -1,6 +1,6 @@
-import React from "react";
-import "./Badge.css";
-import cn from "classnames";
+import React from 'react';
+import './Badge.css';
+import cn from 'classnames';
 
 
 type Props = {

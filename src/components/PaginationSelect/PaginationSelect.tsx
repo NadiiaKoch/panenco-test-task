@@ -1,5 +1,4 @@
-import React from "react";
-import "./FormSelect.css";
+import React from 'react';
 
 
 type Props = {

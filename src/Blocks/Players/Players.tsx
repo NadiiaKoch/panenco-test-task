@@ -3,13 +3,12 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-
-import { getPlayers } from '../API/loadData';
-import { Player } from '../types/Player';
-import { PlayerCard } from './PlayerCard';
-import { Pagination } from './Pagination';
 import { Grid } from '@mui/material';
-import { Loader } from './Loader';
+import { getPlayers } from '../../API/loadData';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { Loader } from '../../components/Loader/Loader';
+import { PlayerCard } from '../../components/PlayerCard/PlayerCard';
+import { Player } from '../../types/Players';
 import './Players.css';
 
 

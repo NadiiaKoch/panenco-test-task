@@ -1,9 +1,8 @@
-import './App.css';
-import AddTeamForm from './components/AddTeamForm';
-
-import { Players } from './components/Players';
 import React, { FC } from 'react';
-import { TeamsTable } from './components/TeamsTable';
+import { Players } from './Blocks/Players/Players';
+import { TeamsTable } from './Blocks/TeamsTable/TeamsTable';
+import AddTeamForm from './Blocks/AddTeamForm/AddTeamForm';
+import './App.css';
 
 export const App: FC = () => {
   return (

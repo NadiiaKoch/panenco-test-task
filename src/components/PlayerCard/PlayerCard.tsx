@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import { Player } from '../types/Player';
 import { Avatar, Card, CardHeader } from '@mui/material';
-
-
+import { Player } from '../../types/Players';
 
 type Props = {
   player: Player,

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { getPages } from "./helpers/getPages";
+import React, { useState } from 'react';
 import './Pagination.css';
-import { PaginationSelect } from "./PaginationSelect";
-import cn from "classnames";
+import { PaginationSelect } from '../PaginationSelect/PaginationSelect';
+import cn from 'classnames';
+import { getPages } from '../../helpers/getPages';
 
 type Props = {
   total: number
@@ -20,7 +20,7 @@ export const Pagination: React.FC<Props> = React.memo(({ total, countPerPage, op
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === lastPage;
 
-  const handleNav = (path: number) => () => {
+  const handleNavigation = (path: number) => () => {
     const nextPage = currentPage + path;
     setCurrentPage(nextPage);
     onLoad?.(perPage, nextPage);
@@ -60,14 +60,14 @@ export const Pagination: React.FC<Props> = React.memo(({ total, countPerPage, op
               className={cn('pagination-button button-left', {
                 'button-disabled': isFirstPage
               })} 
-              onClick={handleNav(-1)}
+              onClick={handleNavigation(-1)}
             ></button>
             <PaginationSelect options={numberOfPages} onChange={handleChangePage} value={currentPage} className="page-select" />
             <button 
               className={cn('pagination-button button-right', {
                 'button-disabled': isLastPage
               })} 
-              onClick={handleNav(1)}
+              onClick={handleNavigation(1)}
             ></button>
           </div>
         </div>

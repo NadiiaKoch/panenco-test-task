@@ -1,6 +1,6 @@
-import { Field } from "formik";
-import React from "react";
-import "./FormSelect.css";
+import { Field } from 'formik';
+import React from 'react';
+import './FormSelect.css';
 
 
 type Props = {

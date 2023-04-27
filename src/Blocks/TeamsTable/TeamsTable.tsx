@@ -6,13 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { memo, useEffect, useState } from 'react';
-import { Team } from '../types/Team';
-import { getTeams } from '../API/loadData';
+import { getTeams } from '../../API/loadData';
 import React from 'react';
-import { Pagination } from './Pagination';
+import { Pagination } from '../../components/Pagination/Pagination';
 import './TeamsTable.css'
-import { Loader } from './Loader';
-import { Badge } from './Badge';
+import { Loader } from '../../components/Loader/Loader';
+import { Badge } from '../../components/Badge/Badge';
+import { Team } from '../../types/Teams';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {

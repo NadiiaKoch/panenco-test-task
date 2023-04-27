@@ -1,10 +1,10 @@
-import { Formik, Form, FormikHelpers, }  from 'formik';
 import React from 'react';
+import { Formik, Form, FormikHelpers, }  from 'formik';
 import { object, string } from 'yup';
-import { Button } from './Button';
+import { FormSelect } from '../../components/FormSelect/FormSelect';
+import { TextInput } from '../../components/TextInput/TextInput';
+import { Button } from '../../components/Button/Button';
 import './AddTeamForm.css';
-import { TextInput } from './TextInput';
-import { FormSelect } from './FormSelect';
 
 const initialValues = {
   name: '',
