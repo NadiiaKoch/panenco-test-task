@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Player } from '../types/Player';
 import { Avatar, Card, CardHeader } from '@mui/material';
-import { purple } from '@mui/material/colors';
+
 
 
 type Props = {
@@ -12,11 +12,10 @@ export const PlayerCard: FC<Props> = ({
   player,
 }) => {
   return (
-    <Card sx={{height: 80, borderRadius: 5}}>
-      {/* <div className="icon">{`${player.first_name[0]}${player.last_name[0]}`}</div> */}
+    <Card sx={{height: 120, borderRadius: 5, cursor: 'pointer', '&:hover .card-name': {color: '#652AD3'}}}>
       <CardHeader
         avatar={
-        <Avatar sx={{ bgcolor: purple[100], color: purple[900] }}>
+        <Avatar sx={{ bgcolor: '#EDE6FB', color: '#1D0053', fontWeight: 700, fontSize: 32, width: 80, height: 80 }}>
           {`${player.first_name[0]}${player.last_name[0]}`}
         </Avatar>
         }
@@ -28,14 +27,11 @@ export const PlayerCard: FC<Props> = ({
         sx={{
           '.card-name': {
             textDecoration: 'none',
-            color: 'black',
+            color: '#14141E',
             fontStyle: 'normal',
             fontWeight: 500,
-            fontSize: 14,
+            fontSize: 20,
           },
-          '& .card-name:hover': {
-            color: purple[500]
-          }
         }}
       />
     </Card>

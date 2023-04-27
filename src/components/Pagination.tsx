@@ -1,42 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { getPages } from "./helpers/getPages";
-import { getData } from "../API/loadData";
 import './Pagination.css';
 import { PaginationSelect } from "./PaginationSelect";
 import cn from "classnames";
 
 type Props = {
-  setData: any,
-  path: string,
+  total: number
   countPerPage: number,
   optionsPerPage: number[],
+  onLoad?: (perPage: number, currentPage: number ) => void
 };
 
-export const Pagination: React.FC<Props> = React.memo(({ setData, path, countPerPage, optionsPerPage }) => {
+export const Pagination: React.FC<Props> = React.memo(({ total, countPerPage, optionsPerPage, onLoad }) => {
   const [perPage, setPerPage] = useState<number>(countPerPage);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [total, setTotal] = useState<number>(0);
 
   const firstPage = 1;
   const lastPage = Math.ceil(total / perPage);
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === lastPage;
 
-  const loadData = async () => {
-    try {
-      const generalData = await getData( path, currentPage, perPage);
-
-      setData(generalData.data);
-      setTotal(generalData.meta.total_count);
-    } catch(err) {
-      console.error(err);
-    } 
-  };
-
-  useEffect(() => {
-    loadData();
-  }, [currentPage, perPage]);
-
+  const handleNav = (path: number) => () => {
+    const nextPage = currentPage + path;
+    setCurrentPage(nextPage);
+    onLoad?.(perPage, nextPage);
+  }
 
   const numberOfPages = getPages(
     firstPage,
@@ -45,10 +33,12 @@ export const Pagination: React.FC<Props> = React.memo(({ setData, path, countPer
 
   const handleChangePerPage = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setPerPage(Number(event.target.value));
+    onLoad?.(Number(event.target.value), currentPage);
   };
 
   const handleChangePage = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCurrentPage(Number(event.target.value));
+    onLoad?.(perPage, Number(event.target.value));
   };
 
   return (
@@ -70,14 +60,14 @@ export const Pagination: React.FC<Props> = React.memo(({ setData, path, countPer
               className={cn('pagination-button button-left', {
                 'button-disabled': isFirstPage
               })} 
-              onClick={(e) => setCurrentPage((page) => page -1)}
+              onClick={handleNav(-1)}
             ></button>
             <PaginationSelect options={numberOfPages} onChange={handleChangePage} value={currentPage} className="page-select" />
             <button 
               className={cn('pagination-button button-right', {
                 'button-disabled': isLastPage
               })} 
-              onClick={(e) => setCurrentPage((page) => page + 1)}
+              onClick={handleNav(1)}
             ></button>
           </div>
         </div>

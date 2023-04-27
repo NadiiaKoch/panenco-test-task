@@ -16,16 +16,18 @@ import './Players.css';
 export const Players: React.FC = memo(() => {
   const [players, setPlayers] = useState<Player[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [total, setTotal] = useState<number>(0);
   const perPage = 8;
   const currentPage = 1;
 
-  const loadPlayers = async () => {
+  const loadPlayers = async (perPage: number, currentPage: number) => {
     setIsLoading(true);
     try {
       const players = await getPlayers(currentPage, perPage);
       console.log(players);
 
       setPlayers(players.data);
+      setTotal(players.meta.total_count);
     } catch(err) {
       console.error(err);
     } finally {
@@ -34,7 +36,7 @@ export const Players: React.FC = memo(() => {
   };
 
   useEffect(() => {
-    loadPlayers();
+    loadPlayers(perPage, currentPage);
   }, []);
 
   const optionsPerPage = [8, 16, 32];
@@ -53,11 +55,11 @@ export const Players: React.FC = memo(() => {
               </Grid>
             ))}
           </Grid>
-          <div className="players-pg">
-            <Pagination setData={setPlayers} path="players" countPerPage={perPage} optionsPerPage={optionsPerPage} />
-          </div>
         </div>
       )}
+      <div className="players-pg">
+        <Pagination total={total} countPerPage={perPage} optionsPerPage={optionsPerPage} onLoad={loadPlayers} />
+      </div>
     </>
   );
 });

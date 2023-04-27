@@ -5,7 +5,6 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { memo, useEffect, useState } from 'react';
 import { Team } from '../types/Team';
 import { getTeams } from '../API/loadData';
@@ -20,34 +19,33 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     backgroundColor: '#EDE6FB',
     color: '#1D0053',
     fontSize: 16,
-    fontWeight: 700
+    fontWeight: 700,
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,
+    color: '#14141E'
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
 }));
 
 
 export const TeamsTable: React.FC = memo(() =>  {
   const [teams, setTeams] = useState<Team[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [total, setTotal] = useState<number>(0);
 
   const perPage = 10;
   const currentPage = 1;
 
-  const loadPlayers = async () => {
+  const loadTeams = async (perPage: number, currentPage: number) => {
     setIsLoading(true);
     try {
       const teams = await getTeams(currentPage, perPage);
-      console.log(teams);
 
       setTeams(teams.data);
+      setTotal(teams.meta.total_count);
     } catch(err) {
       console.error(err);
     } finally {
@@ -56,7 +54,7 @@ export const TeamsTable: React.FC = memo(() =>  {
   };
 
   useEffect(() => {
-    loadPlayers();
+    loadTeams(perPage, currentPage);
   }, [currentPage, perPage]);
 
   const optionsPerPage = [10, 20, 30];
@@ -68,38 +66,42 @@ export const TeamsTable: React.FC = memo(() =>  {
       ) : (
         <>
           <div className="teamsTable-wrapper">
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <TableContainer>
+              <Table sx={{ minWidth: 500 }} aria-label="customized table">
                 <TableHead>
-                  <TableRow>
-                    <StyledTableCell align="left">Name</StyledTableCell>
-                    <StyledTableCell align="left">City</StyledTableCell>
-                    <StyledTableCell align="left">Abbreviation</StyledTableCell>
-                    <StyledTableCell align="left">Conference</StyledTableCell>
-                  </TableRow>
+                  <StyledTableRow>
+                    <StyledTableCell style={{ width: 110}}>Name</StyledTableCell>
+                    <StyledTableCell style={{ width: 130}}>City</StyledTableCell>
+                    <StyledTableCell style={{ width: 130}}>Abbreviation</StyledTableCell>
+                    <StyledTableCell style={{ width: 120}}>Conference</StyledTableCell>
+                    <StyledTableCell ></StyledTableCell>
+                  </StyledTableRow>
                 </TableHead>
                 <TableBody>
                   {teams.map((team) => (
                     <StyledTableRow key={team.id}>
-                      <StyledTableCell align="left">
+                      <StyledTableCell component="th" scope="row">
                         {team.name}
                       </StyledTableCell>
-                      <StyledTableCell align="left">{team.city}</StyledTableCell>
-                      <StyledTableCell align="left">{team.abbreviation}</StyledTableCell>
-                      <StyledTableCell align="left">
-                        <Badge text={team.conference}/>
+                      <StyledTableCell>{team.city !== '' ? (<>{team.city}</>) : (<>{'-'}</>)}</StyledTableCell>
+                      <StyledTableCell>{team.abbreviation}</StyledTableCell>
+                      <StyledTableCell>
+                        {team.conference !== '    ' ? (
+                          <Badge text={team.conference}/>
+                        ) : (<>{'-'}</>)}
                         </StyledTableCell>
+                        <StyledTableCell ></StyledTableCell>
                     </StyledTableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
           </div>
-          <div className="teamsTable-pg">
-            <Pagination setData={setTeams} path="teams" countPerPage={perPage} optionsPerPage={optionsPerPage} />
-          </div>
         </>
       )}
+      <div className="teamsTable-pg">
+        <Pagination total={total} countPerPage={perPage} optionsPerPage={optionsPerPage} onLoad={loadTeams} />
+      </div>
     </>
   );
 });
